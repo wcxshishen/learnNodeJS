@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 提交到服务器上去 -->
+    <form>
+        用户名：<input id="userName" type="text" name="username"> <br>
+        密&emsp;码：<input id="passWord" type="password" name="password"> <br>
+
+         
+        <!-- 点击按钮浏览器会提交form表单里的数据到 action的地址上去 -->
+        <input id="obtn" type="button" value="提交">
+        <div id="odiv"></div>
+    </form>
+</body>
+<script>
+    let obtn = document.getElementById("obtn");
+    let odiv = document.getElementById("odiv");
+
+
+    // try {
+    //     // 非IE
+    //     ajax = new XMLHttpRequest();
+    // } catch (e) {
+    //     // IE
+    //     ajax = new ActiveXObject("Microsoft.XMLHTTP");
+    // }
+
+    obtn.onclick = () => {
+        // ajax post提交
+
+        // 获取用户名密码
+        let userName = document.getElementById("userName").value;
+        let passWord = document.getElementById("passWord").value.trim();
+        let params = {
+            userName,
+            passWord
+        }
+        // 做ajax请求
+
+        let ajax = new XMLHttpRequest();
+
+        ajax.open("POST", "/login_post");
+
+        ajax.onreadystatechange = ()=> {
+
+            if(ajax.readyState == 4 && ajax.status == 200){
+                // 相当于成功之后的回调函数
+                odiv.innerHTML = ajax.responseText;
+            }
+        }
+
+        // 想后端传数据时不能直接传对象，转换成JSON形式的字符串。
+        ajax.send(JSON.stringify(params));
+
+
+        // 超时处理，终止请求ajax.abort()
+        var timer = setTimeout( () => {
+            ajax.abort();
+        },2000);
+    }
+</script>
+</html>

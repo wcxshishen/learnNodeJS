@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <h1>首页</h1>
+    <p>欢迎来到我的网站</p>
+    <!-- 跳转不看前端的路径 -->
+    <a href="/detail.html">跳转到详情页</a><br>
+    <a href="/login.html">跳转到登录页</a><br>
+    <button id="obtn">点击加载更多消息</button>
+    <div id="odiv"></div>
+</body>
+
+<script>
+    let obtn = document.getElementById("obtn");
+    let odiv = document.getElementById("odiv");
+
+    obtn.onclick = () => {
+        console.log('开始ajax请求！');
+        // 1、创建ajax对象  readyState=0
+        let ajax = new XMLHttpRequest();
+
+        // 2、设置请求路径，请求方式 readyState=1
+        ajax.open("GET", "/get_data");
+
+        // 3、绑定鉴定状态改变的处理函数，在这个函数里可以获取响应数据（回调函数）
+        ajax.onreadystatechange = () => {
+            // 这个函数里面的代码，在状态发生改的时候就执行
+            // 获取响应数据
+            // console.log(ajax.readyState);
+
+            // 服务器响应完毕后，readyState为4，并且成功获取数据 status 为 200， 可以渲染数据
+            if(ajax.readyState == 4 && ajax.status == 200){
+
+                // 服务器传来的数据
+                console.log(ajax.responseText);
+                odiv.innerHTML = ajax.responseText;
+            }
+
+
+        };
+
+        // 4、发送请求
+        ajax.send();
+    }
+</script>
+</html>
