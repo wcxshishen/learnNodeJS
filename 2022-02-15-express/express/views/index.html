@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>首页内容</h1>
+    <p>{{ num1 }}</p>
+    <p>{{ num2 }}</p>
+    <p>两个数中较大的是{{num1 > num2 ? num1 : num2}}</p>
+    <p>{{ user.name }}</p>
+    <p>{{ user["age"] }}</p>
+    <ul>
+        数组循环
+        <!-- arr为数组名，$value获取数组元素，$index获取元素对应的索引 -->
+        {{each arr}}
+            <li>{{ $index }}-{{ $value }}</li>
+        {{/each}}
+    </ul>
+
+    <!-- 如果num1 > num2 展示p标签 -->
+    {{ if num1>num2 }}
+        <p>wcxshishen</p>
+    {{ /if }}
+</body>
+</html>

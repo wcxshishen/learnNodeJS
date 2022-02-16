@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.2"
+    "art-template": "^4.13.2",
+    "express": "^4.17.2",
+    "express-art-template": "^1.0.1"
   }
 }
