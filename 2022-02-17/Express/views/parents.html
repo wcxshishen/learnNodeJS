@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>父模板</h1>
+    <!-- 在其他继承于parents.html的文件中，想要和父模板内容不一样的地方，需要加上block -->
+    <!-- 'contentBlock'为块的名字，自定义的，需要加引号 -->
+    {{ block 'contentBlock'}}
+    <p>头部</p>
+    {{ /block }}
+    <p>底部</p>
+</body>
+</html>
