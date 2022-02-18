@@ -1,9 +1,6 @@
 const express = require('express');
 const path = require('path');
 
-// 1.引入art-template
-const template = require('art-template');
-
 const app = express();
 const port = 3000;
 

@@ -5,7 +5,11 @@
   "license": "MIT",
   "dependencies": {
     "art-template": "^4.13.2",
+    "cookie-session": "^2.0.0",
     "express": "^4.17.3",
     "express-art-template": "^1.0.1"
+  },
+  "devDependencies": {
+    "cookie-parser": "^1.4.6"
   }
 }
