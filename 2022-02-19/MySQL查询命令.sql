@@ -112,8 +112,42 @@
     select * from students where age between 18 and 34 and gender = '女' order by height desc, age asc, id desc;
 
 -- 聚合函数
-    -- 总数
+    -- 查询总数
     -- count
 
     -- 查询男性有多少人
-    
+    select count(*) from students where gender = 1;
+
+    -- 最大值
+    -- max
+    -- 查询最大的年龄
+    select max(age) from students;
+
+    -- 最小值
+    -- min
+    select min(age) from students;
+
+    -- 求和
+    -- sum
+    -- 求所有年龄的总和
+    select sum(age) from students;
+
+    -- 平均值
+    -- avg
+    select avg(age) from students;
+
+    -- 计算平均值
+    select sum(age)/count(*) as '平均值' from students;
+
+    -- 四舍五入
+    select round(sum(age)/count(*), 2) from students;
+    select round(avg(age), 2) from students;
+
+    # 聚合函数计算时并不会把null计算进去;
+    select round(sum(height)/count(*), 2) from students where gender = 1; # 将null算进去了
+    select round(avg(height), 2) from students where gender = 1;
+
+-- 分组查询
+
+    -- 分组
+    -- select 分组的字段 from 表名 group by 分组字段;
