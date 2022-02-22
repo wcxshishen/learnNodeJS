@@ -201,3 +201,40 @@
     -- 每页分两个，显示第6页信息，按照年龄从小到大排序
     -- 先整体排序，在进行分页
     select * from students order by age desc limit 10, 2;
+
+-- 连接 （表与表之间的连接，为了更好的查出有效数据）
+    -- inner join ... on
+    -- selevt 表a inner join 表b;
+    -- 查询 有能够对应班级的学生以及班级信息
+    select * from students inner join classes on students.cls_id = classes.id;
+
+    select students.name as "姓名", classes.name as "班级" from students inner join classes on students.cls_id = classes.id;
+
+    -- 查询有能够对应班级班级学生以及班级信息，显示学生的所有信息，以及班级名称
+    select s.*, c.name  from students as s inner join classes as c on s.cls_id = c.id;
+
+    -- 在以上查询中将班级名显示在第一列
+    select  c.name as "班级", s.* from students as s inner join classes as c on s.cls_id = c.id;
+
+    -- 在以上查询中按照班级进行排序
+    select  c.name as "班级", s.* from students as s inner join classes as c on s.cls_id = c.id order by c.name desc; 
+
+    -- 当是同一个班级的时候，按照学生的id进行大小排序
+    -- 若班级相同按照id排序
+    select  c.name as "班级", s.* from students as s inner join classes as c on s.cls_id = c.id order by c.name, s.id asc ; 
+
+-- 子查询,一个查询的结果作为另一个查询的一部分
+    -- 标量子查询：子查询返回的结果是一个数据（一行一列）
+    -- 列子查询：返回的结果是一列多行
+    -- 行子查询：返回的结果是一行多列
+
+    -- 查询高于平均身高的信息
+    select avg(height) from students;
+
+    select * from students where height > ( select avg(height) from students ); 
+
+    -- 查询学生的班级号能够对应学生的名字
+    select group_concat(s.name) from students as s inner join classes as c on s.cls_id = c.id;
+    -- 子查询做法
+    select id from classes;
+    select s.name from students as s where s.cls_id in (select id from classes);
