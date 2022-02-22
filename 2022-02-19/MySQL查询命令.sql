@@ -99,8 +99,8 @@
 
 -- 排序查询
     -- order by 字段名 升降序,  字段名 升降序, ...
-    -- asc 从大到小排列，即降序。
-    -- desc 从小到大排列，即升序。
+    -- asc 从小到大排列，即升序。
+    -- desc 从大到小排列，即降序。
 
     -- 查询年龄在18到34之间的男性，按照年龄降序排列
     select * from students where age between 18 and 34 and gender = 1 order by age asc;
@@ -151,3 +151,53 @@
 
     -- 分组
     -- select 分组的字段 from 表名 group by 分组字段;
+
+    -- group by
+    -- 按照性别分组，查询所有性别
+    -- 可以使用分组的方法清除重复记录
+    select gender from students group by gender;
+
+    -- 计算每种性别中的人数
+    select gender, count(*) from students group by gender;
+
+    -- 看到每种，没类 就可以用分组
+    -- 以什么分组前面就展示什么
+
+    -- group_concat(...), 合并同组的字段
+    -- 查询同种性别中的姓名
+    select gender,group_concat(name) from students group by gender;
+
+    -- 查询每组性别的平均年龄
+    select gender, avg(age) from students group by gender;
+
+    -- having(注意having和group by 连用，having后通常也要跟聚合函数),分组的条件
+    -- 聚合函数如果作为条件，只能和having配合，不能和where配合
+    -- 查询平均年龄超过30岁的性别，以及姓名
+    select gender, avg(age), group_concat(name) from students group by gender having avg(age) > 30;
+
+    -- 查询每种性别中的人数多于两个的信息
+    select gender, count(*), group_concat(name) from students group by gender having count(*) > 2;
+
+-- 分页查询
+    -- limit start, count
+    -- limit 放在最后面(注意)
+    -- limit (要显示第几页-1) * 每页分多少个, 每页分多少个
+
+    -- 查询前5个数据
+    select * from students limit 5;
+
+    -- 每页分2个，要显示第一页 （查询前两个数据）
+    select * from students limit 2;
+
+    -- 通用写法
+    select * from students limit 0, 2;
+
+    -- 每页有两个要显示第二页
+    select * from students limit 2, 2;
+
+    -- 每页分4个展示第二页
+    select * from students limit 4, 4;
+
+    -- 每页分两个，显示第6页信息，按照年龄从小到大排序
+    -- 先整体排序，在进行分页
+    select * from students order by age desc limit 10, 2;
