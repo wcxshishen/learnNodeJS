@@ -1,5 +1,6 @@
 const express = require("express");
 
+const orm = require("orm");
 const db = require("./db/db")
 
 const app = express();
