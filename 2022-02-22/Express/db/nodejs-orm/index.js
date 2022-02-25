@@ -4,7 +4,7 @@ let orm_config = {
     host: 'localhost',//数据库地址
     port:'3306',
     user: 'root',//用户名，没有可不填
-    password: '',//密码，没有可不填
+    password: 'wcxshishen.qq123',//密码，没有可不填
     database: 'qianduan_test'//数据库名称
 }
 
