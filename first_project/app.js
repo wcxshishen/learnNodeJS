@@ -1,22 +1,16 @@
 const express = require("express");
-const path = require("path");
-
 const app = express();
-const port = 3000;
 
-// 关于模板的配置信息
-app.engine('html', require('express-art-template'));
-app.set('view options', {
-    debug: process.env.NODE_ENV !== 'production'
-});
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'html');
+// const appConfig = require("./config") // 函数的方式
+const AppConfig = require("./config"); // 面向对象的方式
 
+// appConfig(app); // 函数的方式
+let appConfig = new AppConfig(app,3000); // 面向对象方式导出，在new时执行了constructor构造器函数、
+// 进行配置
+appConfig.run();
+// 注册路由
+appConfig.registerRouter();
 
-app.get('/', (req,res) => {
-    res.render("index")
-})
-
-app.listen(port,() => {
-    console.log(`express serve going at ${port}!`)
+app.listen(appConfig.port,() => {
+    console.log(`express serve going at ${appConfig.port}!`)
 })

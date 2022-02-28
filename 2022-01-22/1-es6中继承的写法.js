@@ -33,7 +33,7 @@ class Animal { // 父类 基类
 class Cat extends Animal{ // 子类 派生
 
     constructor(name){
-        super(name); // 通过super老调用父类的construstor方法 这里时必须调用super函数来获取this
+        super(name); // 通过super来调用父类的construstor方法 这里时必须调用super函数来获取this
         console.log(this)
 
         this.name = name;
