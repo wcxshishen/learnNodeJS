@@ -19,9 +19,11 @@ router.get("/get_session", (req,res) => {
 
 
 router.get("/get_data", (req,res) => {
-    async function(){
+   (async function(){
+        let result = await handleDB(res, "info_category", "find", "数据库查询出错");
 
-    }
+        res.send(result);
+    })()
 })
 
 module.exports = router;
