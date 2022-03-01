@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const handleDB = require("../db/handleDB");
 
 router.get('/', (req,res) => {
     // 测试设置cookie
@@ -14,6 +15,13 @@ router.get("/get_cookie", (req,res) => {
 
 router.get("/get_session", (req,res) => {
     res.send("wcx"+req.session["age"]);
+})
+
+
+router.get("/get_data", (req,res) => {
+    async function(){
+
+    }
 })
 
 module.exports = router;
