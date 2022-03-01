@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .box1{
+        height: 200px;
+        width: 50px;
+        border: 1px solid black;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+    }
+    .box1 div:nth-child(1){
+        height: 200px;
+        width: 50px;
+        background-color: rebeccapurple;
+    }
+    .box1 div:nth-child(2){
+        height: 200px;
+        width: 50px;
+        background-color: green;
+    }
+    .box1 div:nth-child(3){
+        position: fixed;
+        height: 20px;
+        width: 10px;
+        background-color: red;
+        top: 0;
+    }
+</style>
+<body>
+    <div class="box1">
+        <div></div>
+        <div></div>
+        <div class="box2"></div>
+    </div>
+    <button onclick="clickbtn(1,2)">wcx</button>
+</body>
+<script>
+    // var time = 0;
+    // var timer = null;
+    // $(".box1").scroll(function(){
+    //     const box2 = $(".box2");
+    //     console.log("滚动");
+    //     nowtime = +new Date();
+    //     if(nowtime - time > 2000){
+    //         // box2.hide();
+    //         time = nowtime;
+    //         // timer && clearTimeout(timer);
+    //         // timer = setTimeout(()=>{
+    //         //     box2.show();
+    //         // },500)
+    //         console.log("wcxshisyhen")
+    //     }
+    // })
+
+    var vv = {};
+    vv.throttle = function(fn, intervalTime){
+        let time = 0; // 让time形成闭包
+        return function(){
+            let nowtime = +new Date(); // 不断改变nowtime
+            let args= arguments;
+            let that = this;
+            console.log(args);
+            console.log(that);
+            if(nowtime - time > intervalTime){
+                time = nowtime;
+                // fn(...arg);
+                fn.apply(that,args); // call和apply会立即执行 而bind会返回一个函数
+            }
+        }
+    };
+
+    function fn(a,b) {
+        console.log(a+b);
+        console.log(this);
+    }
+
+    var clickbtn =  vv.throttle(fn,5000); 
+
+</script>
+</html>
