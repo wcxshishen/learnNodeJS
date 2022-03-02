@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+    <script>
+        var start = +new Date;
+        console.log(start);
+    </script>
+  
+    <!-- link标签阻塞了内部的script标签的执行 -->
+    <!-- <link rel="stylesheet" href="http://udacity-crp.herokuapp.com/style.css?rtt=2"> 
+   -->
+   <link rel="stylesheet" href="http://udacity-crp.herokuapp.com/style.css?rtt=2"> 
+</head>
+  
+<body>
+    test
+    <span id="result"></span>
+    <span id="result1"></span>
+    
+  
+    <script async src="http://udacity-crp.herokuapp.com/time.js?rtt=1&a"></script>
+    <script async src="http://udacity-crp.herokuapp.com/time.js?rtt=1&b"></script>
+    <script async src="http://udacity-crp.herokuapp.com/time.js?rtt=1&d"></script>
+  
+ 
+    <script> 
+    // var link = document.createElement('link');
+    // link.href = "http://udacity-crp.herokuapp.com/style.css?rtt=2";
+    // link.rel = "stylesheet";
+    // document.head.appendChild(link);
+    // var script = document.createElement('script');
+    // script.src = "http://udacity-crp.herokuapp.com/time.js?rtt=1&a";
+    // document.head.appendChild(script);
+    </script>
+    <!-- 此script标签受到上面link标签的阻塞 -->
+    <script>
+        var end = +new Date;
+        console.log(end);
+        document.getElementById("result").innerHTML = end-start;
+    </script>
+      <script  src="http://udacity-crp.herokuapp.com/time.js?rtt=1&c"></script>
+      <script>
+        var end = +new Date;
+        console.log(end);
+        document.getElementById("result1").innerHTML = end-start;
+    </script>
+</body>
+
+
+</html>

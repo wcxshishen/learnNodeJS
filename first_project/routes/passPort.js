@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Captcha = require("../utils/captcha/index");
 
-router.get("/get_code", (req,res) => {
+router.get("/passport/image_code", (req,res) => {
     let captchaObj = new Captcha();
     let captcha = captchaObj.getCode();
 
