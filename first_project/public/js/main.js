@@ -177,25 +177,25 @@ $(function(){
             "agree":agree
         }
         
-        // $.ajax({
-        //     url:'/passport/register',
-        //     type:'post',
-        //     data:JSON.stringify(params),
-        //     contentType:'application/json',
-        //     //headers:{'X-CSRFToken':getCookie('csrf_token')},
-        //     success: function (resp) {
-        //         console.log("回调成功了");
+        $.ajax({
+            url:'/passport/register',
+            type:'post',
+            data:JSON.stringify(params),
+            contentType:'application/json',
+            //headers:{'X-CSRFToken':getCookie('csrf_token')},
+            success: function (resp) {
+                console.log("回调成功了");
                 
-        //         //判断是否注册成功
-        //         if(resp.errno == '0'){
-        //             //重新加载当前页面
-        //             alert(resp.errmsg);
-        //             window.location.reload()
-        //         }else{
-        //             alert(resp.errmsg);
-        //         }
-        //     }
-        // })
+                //判断是否注册成功
+                if(resp.errno == '0'){
+                    //重新加载当前页面
+                    alert(resp.errmsg);
+                    window.location.reload()
+                }else{
+                    alert(resp.errmsg);
+                }
+            }
+        })
         
     })
 })
@@ -220,7 +220,7 @@ function logout() {
 function generateImageCode() {
 
     // 1.设置图片url地址
-    image_url = '/passport/image_code'
+    image_url = '/passport/image_code/' + +new Date();
 
     // 2.将地址设置到img标签的src属性中,为image_url
     $('.get_pic_code').attr('src',image_url)
