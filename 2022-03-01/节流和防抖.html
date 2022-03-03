@@ -45,6 +45,8 @@
         <div class="box2"></div>
     </div>
     <button onclick="clickbtn(1,2)">wcx</button>
+
+    <input type="text" name="" id="input">
 </body>
 <script>
     // var time = 0;
@@ -64,6 +66,8 @@
     //     }
     // })
 
+
+    // 节流 
     var vv = {};
     vv.throttle = function(fn, intervalTime){
         let time = 0; // 让time形成闭包
@@ -71,8 +75,6 @@
             let nowtime = +new Date(); // 不断改变nowtime
             let args= arguments;
             let that = this;
-            console.log(args);
-            console.log(that);
             if(nowtime - time > intervalTime){
                 time = nowtime;
                 // fn(...arg);
@@ -80,13 +82,30 @@
             }
         }
     };
-
     function fn(a,b) {
         console.log(a+b);
         console.log(this);
     }
 
     var clickbtn =  vv.throttle(fn,5000); 
+
+    // 防抖
+    vv.debounce = function(fn, time){
+        let timer = null;
+        return function(){
+            let args = arguments;
+            let that = this;
+            time && clearTimeout(timer);
+            timer = setTimeout(()=>{
+                fn.apply(that,arguments);
+            },time)
+        }
+    }
+    let search = vv.debounce(()=>{
+        console.log("wcx")
+    },1000)
+    $("#input").on('input',search);
+
 
 </script>
 </html>

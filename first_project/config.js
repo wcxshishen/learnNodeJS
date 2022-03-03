@@ -5,6 +5,7 @@ const cookieSession = require("cookie-session");
 // 抽取路由请求
 const firstRouter = require("./routes/index");
 const passPortRouter = require("./routes/passPort");
+
 // 以函数的方式进行封装
 // let appConfig = (app) => {
 //     // 获取post请求参数的配置
